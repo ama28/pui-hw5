@@ -15,6 +15,9 @@ class Navbar extends Component {
                     <a href="#">PRODUCTS</a>
                     <div className="cart">
                         <a onClick={this.props.toggleCart}>CART</a>
+                        
+                        {/* for the 3-second cart popup & display that is not in this iteration*/}
+
                         {/* <div id="cart-display">
                         <span>{this.props.totalItems}</span>
                         <span> items</span> 

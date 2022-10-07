@@ -44,11 +44,11 @@ class Index extends Component {
 
           totalItems: 0,
           totalPrice: 0.00,
-        //   curType: "",
-        //   curGlazing: "",
-        //   curPackSize: 1,
-        //   curPrice: 0,
-        //   isPopupVisible: false,
+          // curType: "",
+          // curGlazing: "",
+          // curPackSize: 1,
+          // curPrice: 0,
+          // isPopupVisible: false,
 
           searchContent: "",
           searchSubmission: "",
@@ -79,6 +79,7 @@ class Index extends Component {
         // this.removePopup()
     }
 
+    //removes an item from the cart display
     removeItemFromCart = (idx, itemCount, price) => {
         const newCart = this.state.cart
         newCart.splice(idx, 1)
@@ -90,6 +91,7 @@ class Index extends Component {
         }))
     }
 
+    //toggles the cart display
     toggleCart = () => {
         this.setState(prevState => ({
             ...prevState,
@@ -107,6 +109,7 @@ class Index extends Component {
         }, 3000)
     }
 
+    //updates the state to keep track of what's typed into the search bar
     updateSearch = (event) => {
         event.preventDefault()
         this.setState(prevState => ({
@@ -115,6 +118,7 @@ class Index extends Component {
         }))
     }
 
+    //updates the search submission state only when the search button is pressed
     submitSearch = () => {
         this.setState(prevState => ({
             ...prevState,
@@ -122,6 +126,7 @@ class Index extends Component {
         }))
     }
 
+    //updates state when the user chooses a filter from the dropdown (name, basePrice)
     updateSort = (event) => {
         this.setState(prevState => ({
             ...prevState,
@@ -129,11 +134,12 @@ class Index extends Component {
         }))
     }
 
+    //returns an array containing an array of items to be shown and whether there are no items to be shown
     renderItems = () => {
-        var itemData = []
-        var itemsToRender = []
+        var itemData = [] //to hold base price, type, as well as the item component
+        var itemsToRender = [] //to hold only the item components
 
-        //sorting functions
+        //sorting function for price
         const compareBasePrice = (a, b) =>
         {
             if (a[0] < b[0])
@@ -144,6 +150,7 @@ class Index extends Component {
                 return 0
         } 
     
+        //sorting function for name
         const compareName = (a, b) => {
             return a[1].localeCompare(b[1])
         }
