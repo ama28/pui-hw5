@@ -40,10 +40,10 @@ class Index extends Component {
                 basePrice: 3.99,
             }
           ],
-          cart: JSON.parse(localStorage.getItem("cart")) || [],
+          cart: [],
 
-          totalItems: JSON.parse(localStorage.getItem("totalItems")) || 0,
-          totalPrice: JSON.parse(localStorage.getItem("totalPrice")) || 0,
+          totalItems: 0,
+          totalPrice: 0.00,
           // curType: "",
           // curGlazing: "",
           // curPackSize: 1,
@@ -65,12 +65,6 @@ class Index extends Component {
         var newCart = this.state.cart
         newCart.push({imageURL: imageURL, type: type, glazingLabel: glazingLabel, packSize: packSize, price: price})
 
-        localStorage.setItem("cart", JSON.stringify(newCart))
-        localStorage.setItem("totalItems", JSON.stringify(parseFloat(this.state.totalItems) + parseFloat(packSize)))
-        localStorage.setItem("totalPrice", JSON.stringify((parseFloat(this.state.totalPrice) + parseFloat(price)).toFixed(2)))
-
-        console.log(JSON.parse(localStorage.getItem("cart")))
-
         this.setState(prevState => ({
             ...prevState,
             cart: newCart,
@@ -89,13 +83,6 @@ class Index extends Component {
     removeItemFromCart = (idx, itemCount, price) => {
         const newCart = this.state.cart
         newCart.splice(idx, 1)
-
-        localStorage.setItem("cart", JSON.stringify(newCart))
-        localStorage.setItem("totalItems", JSON.stringify(parseFloat(this.state.totalItems) - parseFloat(itemCount)))
-        localStorage.setItem("totalPrice", JSON.stringify((parseFloat(this.state.totalPrice) - parseFloat(price)).toFixed(2)))
-
-        console.log(JSON.parse(localStorage.getItem("cart")))
-
         this.setState(prevState => ({
             ...prevState,
             cart: newCart,
